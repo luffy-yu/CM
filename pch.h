@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <array>
 #include <cassert>
-#include <intsafe.h>
+//#include <intsafe.h>
 #include <list>
 #include <future>
 #include <regex>
