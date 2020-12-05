@@ -1,12 +1,6 @@
 #pragma once
 
-#if defined(_WIN32) && defined(_MSC_VER)
-
-#include <winerror.h>
-
-#else
-
-#include "Ratpack/CalcErr.h"
+//#include "Ratpack/CalcErr.h"
 
 #define E_ACCESSDENIED 0x80070005
 #define E_FAIL 0x80004005
@@ -21,5 +15,3 @@
 #define SUCCEEDED(hr) (((ResultCode)(hr)) >= 0)
 #define FAILED(hr) (((ResultCode)(hr)) < 0)
 #define SCODE_CODE(sc) ((sc) & 0xFFFF)
-
-#endif

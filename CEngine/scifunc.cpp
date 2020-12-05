@@ -16,7 +16,7 @@
 /***                                                                    ***/
 /***                                                                    ***/
 /**************************************************************************/
-#include <winerror.h>
+#include "winerror_cross_platform.h"
 #include "CEngine/CalcEngine.h"
 
 using namespace std;

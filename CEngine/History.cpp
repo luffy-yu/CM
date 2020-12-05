@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-#include <winerror.h>
+#include "winerror_cross_platform.h"
 #include "CEngine/CalcEngine.h"
 #include "Command.h"
 #include "ExpressionCommand.h"
