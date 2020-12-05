@@ -61,8 +61,8 @@ CCalcEngine::CCalcEngine(
     bool fPrecedence,
     bool fIntegerMode,
     CalculationManager::IResourceProvider* const pResourceProvider,
-    __in_opt ICalcDisplay* pCalcDisplay,
-    __in_opt shared_ptr<IHistoryDisplay> pHistoryDisplay)
+    ICalcDisplay* pCalcDisplay,
+    shared_ptr<IHistoryDisplay> pHistoryDisplay)
     : m_fPrecedence(fPrecedence)
     , m_fIntegerMode(fIntegerMode)
     , m_pCalcDisplay(pCalcDisplay)
