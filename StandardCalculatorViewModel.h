@@ -77,9 +77,9 @@ private:
 public:
     StandardCalculatorViewModel() {};
     void SetExpressionDisplay(
-        _Inout_ std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
-        _Inout_ std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands);
-    void SetTokens(_Inout_ std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens);
+        std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
+        std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands);
+    void SetTokens(std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens);
     wstring GetCalculatorExpressionAutomationName();
 };
 

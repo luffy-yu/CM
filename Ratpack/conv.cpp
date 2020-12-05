@@ -64,7 +64,7 @@ wchar_t g_decimalSeparator = L'.';
 
 namespace
 {
-    int32_t Calc_ULongAdd(_In_ uint32_t ulAugend, _In_ uint32_t ulAddend, _Out_ uint32_t* pulResult)
+    int32_t Calc_ULongAdd(uint32_t ulAugend, uint32_t ulAddend, _Out_ uint32_t* pulResult)
     {
         int32_t hr = CALC_INTSAFE_E_ARITHMETIC_OVERFLOW;
         *pulResult = CALC_ULONG_ERROR;
@@ -78,7 +78,7 @@ namespace
         return hr;
     }
 
-    int32_t Calc_ULongLongToULong(_In_ uint64_t ullOperand, _Out_ uint32_t* pulResult)
+    int32_t Calc_ULongLongToULong(uint64_t ullOperand, _Out_ uint32_t* pulResult)
     {
         int32_t hr = CALC_INTSAFE_E_ARITHMETIC_OVERFLOW;
         *pulResult = CALC_ULONG_ERROR;
@@ -92,7 +92,7 @@ namespace
         return hr;
     }
 
-    int32_t Calc_ULongMult(_In_ uint32_t ulMultiplicand, _In_ uint32_t ulMultiplier, _Out_ uint32_t* pulResult)
+    int32_t Calc_ULongMult(uint32_t ulMultiplicand, uint32_t ulMultiplier, _Out_ uint32_t* pulResult)
     {
         uint64_t ull64Result = Calc_UInt32x32To64(ulMultiplicand, ulMultiplier);
 
@@ -101,7 +101,7 @@ namespace
 }
 
 // Used to strip trailing zeros, and prevent combinatorial explosions
-bool stripzeroesnum(_Inout_ PNUMBER pnum, int32_t starting);
+bool stripzeroesnum(PNUMBER pnum, int32_t starting);
 
 void SetDecimalSeparator(wchar_t decimalSeparator)
 {
@@ -128,7 +128,7 @@ void* zmalloc(size_t a)
 //
 //-----------------------------------------------------------------------------
 
-void _dupnum(_In_ PNUMBER dest, _In_ const NUMBER* const src)
+void _dupnum(PNUMBER dest, const NUMBER* const src)
 {
     memcpy(dest, src, (int)(sizeof(NUMBER) + ((src)->cdigit) * (sizeof(MANTTYPE))));
 }
@@ -145,7 +145,7 @@ void _dupnum(_In_ PNUMBER dest, _In_ const NUMBER* const src)
 //
 //-----------------------------------------------------------------------------
 
-void _destroynum(_Frees_ptr_opt_ PNUMBER pnum)
+void _destroynum(PNUMBER pnum)
 
 {
     if (pnum != nullptr)
@@ -167,7 +167,7 @@ void _destroynum(_Frees_ptr_opt_ PNUMBER pnum)
 //
 //-----------------------------------------------------------------------------
 
-void _destroyrat(_Frees_ptr_opt_ PRAT prat)
+void _destroyrat(PRAT prat)
 
 {
     if (prat != nullptr)
@@ -190,7 +190,7 @@ void _destroyrat(_Frees_ptr_opt_ PRAT prat)
 //
 //-----------------------------------------------------------------------------
 
-PNUMBER _createnum(_In_ uint32_t size)
+PNUMBER _createnum(uint32_t size)
 
 {
     PNUMBER pnumret = nullptr;
@@ -258,7 +258,7 @@ PRAT _createrat(void)
 //
 //-----------------------------------------------------------------------------
 
-PRAT numtorat(_In_ PNUMBER pin, uint32_t radix)
+PRAT numtorat(PNUMBER pin, uint32_t radix)
 
 {
     PNUMBER pnRadixn = nullptr;
@@ -300,7 +300,7 @@ PRAT numtorat(_In_ PNUMBER pin, uint32_t radix)
 //
 //----------------------------------------------------------------------------
 
-PNUMBER nRadixxtonum(_In_ PNUMBER a, uint32_t radix, int32_t precision)
+PNUMBER nRadixxtonum(PNUMBER a, uint32_t radix, int32_t precision)
 
 {
     PNUMBER sum = i32tonum(0, radix);
@@ -354,7 +354,7 @@ PNUMBER nRadixxtonum(_In_ PNUMBER a, uint32_t radix, int32_t precision)
 //
 //-----------------------------------------------------------------------------
 
-PNUMBER numtonRadixx(_In_ PNUMBER a, uint32_t radix)
+PNUMBER numtonRadixx(PNUMBER a, uint32_t radix)
 {
     PNUMBER pnumret = i32tonum(0, BASEX); // pnumret is the number in internal form.
     PNUMBER num_radix = i32tonum(radix, BASEX);
@@ -881,7 +881,7 @@ PNUMBER Ui32tonum(uint32_t ini32, uint32_t radix)
 //
 //-----------------------------------------------------------------------------
 
-int32_t rattoi32(_In_ PRAT prat, uint32_t radix, int32_t precision)
+int32_t rattoi32(PRAT prat, uint32_t radix, int32_t precision)
 {
     if (rat_gt(prat, rat_max_i32, precision) || rat_lt(prat, rat_min_i32, precision))
     {
@@ -916,7 +916,7 @@ int32_t rattoi32(_In_ PRAT prat, uint32_t radix, int32_t precision)
 //    base.
 //
 //-----------------------------------------------------------------------------
-uint32_t rattoUi32(_In_ PRAT prat, uint32_t radix, int32_t precision)
+uint32_t rattoUi32(PRAT prat, uint32_t radix, int32_t precision)
 {
     if (rat_gt(prat, rat_dword, precision) || rat_lt(prat, rat_zero, precision))
     {
@@ -953,7 +953,7 @@ uint32_t rattoUi32(_In_ PRAT prat, uint32_t radix, int32_t precision)
 //    internal base chosen happens to be 2^32, this is easier.
 //-----------------------------------------------------------------------------
 
-uint64_t rattoUi64(_In_ PRAT prat, uint32_t radix, int32_t precision)
+uint64_t rattoUi64(PRAT prat, uint32_t radix, int32_t precision)
 {
     PRAT pint = nullptr;
 
@@ -988,7 +988,7 @@ uint64_t rattoUi64(_In_ PRAT prat, uint32_t radix, int32_t precision)
 //    base   claimed.
 //
 //-----------------------------------------------------------------------------
-int32_t numtoi32(_In_ PNUMBER pnum, uint32_t radix)
+int32_t numtoi32(PNUMBER pnum, uint32_t radix)
 {
     int32_t lret = 0;
 
@@ -1023,7 +1023,7 @@ int32_t numtoi32(_In_ PNUMBER pnum, uint32_t radix)
 //
 //-----------------------------------------------------------------------------
 
-bool stripzeroesnum(_Inout_ PNUMBER pnum, int32_t starting)
+bool stripzeroesnum(PNUMBER pnum, int32_t starting)
 {
     bool fstrip = false;
     // point pmant to the LeastCalculatedDigit
@@ -1073,7 +1073,7 @@ bool stripzeroesnum(_Inout_ PNUMBER pnum, int32_t starting)
 //    representation.
 //
 //-----------------------------------------------------------------------------
-wstring NumberToString(_Inout_ PNUMBER& pnum, NumberFormat format, uint32_t radix, int32_t precision)
+wstring NumberToString(PNUMBER& pnum, NumberFormat format, uint32_t radix, int32_t precision)
 {
     stripzeroesnum(pnum, precision + 2);
     int32_t length = pnum->cdigit;
@@ -1283,7 +1283,7 @@ wstring NumberToString(_Inout_ PNUMBER& pnum, NumberFormat format, uint32_t radi
 //       why a pointer to the rational is passed in.
 //
 //-----------------------------------------------------------------------------
-wstring RatToString(_Inout_ PRAT& prat, NumberFormat format, uint32_t radix, int32_t precision)
+wstring RatToString(PRAT& prat, NumberFormat format, uint32_t radix, int32_t precision)
 {
     PNUMBER p = RatToNumber(prat, radix, precision);
 
@@ -1293,7 +1293,7 @@ wstring RatToString(_Inout_ PRAT& prat, NumberFormat format, uint32_t radix, int
     return result;
 }
 
-PNUMBER RatToNumber(_In_ PRAT prat, uint32_t radix, int32_t precision)
+PNUMBER RatToNumber(PRAT prat, uint32_t radix, int32_t precision)
 {
     PRAT temprat = nullptr;
     DUPRAT(temprat, prat);
@@ -1318,7 +1318,7 @@ PNUMBER RatToNumber(_In_ PRAT prat, uint32_t radix, int32_t precision)
 }
 
 // Converts a PRAT to a PNUMBER and back to a PRAT, flattening/simplifying the rational in the process
-void flatrat(_Inout_ PRAT& prat, uint32_t radix, int32_t precision)
+void flatrat(PRAT& prat, uint32_t radix, int32_t precision)
 {
     PNUMBER pnum = RatToNumber(prat, radix, precision);
 
@@ -1348,7 +1348,7 @@ void flatrat(_Inout_ PRAT& prat, uint32_t radix, int32_t precision)
 //
 //-----------------------------------------------------------------------------
 
-PNUMBER gcd(_In_ PNUMBER a, _In_ PNUMBER b)
+PNUMBER gcd(PNUMBER a, PNUMBER b)
 {
     PNUMBER r = nullptr;
     PNUMBER larger = nullptr;
@@ -1466,7 +1466,7 @@ PNUMBER i32prodnum(int32_t start, int32_t stop, uint32_t radix)
 //
 //-----------------------------------------------------------------------------
 
-void numpowi32(_Inout_ PNUMBER* proot, int32_t power, uint32_t radix, int32_t precision)
+void numpowi32(PNUMBER* proot, int32_t power, uint32_t radix, int32_t precision)
 {
     PNUMBER lret = i32tonum(1, radix);
 
@@ -1497,7 +1497,7 @@ void numpowi32(_Inout_ PNUMBER* proot, int32_t power, uint32_t radix, int32_t pr
 //
 //-----------------------------------------------------------------------------
 
-void ratpowi32(_Inout_ PRAT* proot, int32_t power, int32_t precision)
+void ratpowi32(PRAT* proot, int32_t power, int32_t precision)
 
 {
     if (power < 0)

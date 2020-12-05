@@ -418,7 +418,7 @@ void CHistoryCollector::SetExpressionDisplay()
     }
 }
 
-int CHistoryCollector::AddCommand(_In_ const std::shared_ptr<IExpressionCommand>& spCommand)
+int CHistoryCollector::AddCommand(const std::shared_ptr<IExpressionCommand>& spCommand)
 {
     if (m_spCommands == nullptr)
     {

@@ -12,7 +12,7 @@ constexpr wchar_t chNegate = L'-';
 constexpr wchar_t chExp = L'e';
 constexpr wchar_t chPlus = L'+';
 
-CParentheses::CParentheses(_In_ int command)
+CParentheses::CParentheses(int command)
     : m_command(command)
 {
 }
@@ -27,7 +27,7 @@ CalculationManager::CommandType CParentheses::GetCommandType() const
     return CalculationManager::CommandType::Parentheses;
 }
 
-void CParentheses::Accept(_In_ ISerializeCommandVisitor& commandVisitor)
+void CParentheses::Accept(ISerializeCommandVisitor& commandVisitor)
 {
     commandVisitor.Visit(*this);
 }
@@ -68,7 +68,7 @@ void CUnaryCommand::SetCommands(int command1, int command2)
     m_command->push_back(command2);
 }
 
-void CUnaryCommand::Accept(_In_ ISerializeCommandVisitor& commandVisitor)
+void CUnaryCommand::Accept(ISerializeCommandVisitor& commandVisitor)
 {
     commandVisitor.Visit(*this);
 }
@@ -93,7 +93,7 @@ CalculationManager::CommandType CBinaryCommand::GetCommandType() const
     return CalculationManager::CommandType::BinaryCommand;
 }
 
-void CBinaryCommand::Accept(_In_ ISerializeCommandVisitor& commandVisitor)
+void CBinaryCommand::Accept(ISerializeCommandVisitor& commandVisitor)
 {
     commandVisitor.Visit(*this);
 }
@@ -283,7 +283,7 @@ wstring COpndCommand::GetString(uint32_t radix, int32_t precision)
     return wstring{};
 }
 
-void COpndCommand::Accept(_In_ ISerializeCommandVisitor& commandVisitor)
+void COpndCommand::Accept(ISerializeCommandVisitor& commandVisitor)
 {
     commandVisitor.Visit(*this);
 }

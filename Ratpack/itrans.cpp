@@ -17,7 +17,7 @@
 //-----------------------------------------------------------------------------
 #include "ratpak.h"
 
-void ascalerat(_Inout_ PRAT* pa, AngleType angletype, int32_t precision)
+void ascalerat(PRAT* pa, AngleType angletype, int32_t precision)
 {
     switch (angletype)
     {
@@ -76,14 +76,14 @@ void _asinrat(PRAT* px, int32_t precision)
     DESTROYTAYLOR();
 }
 
-void asinanglerat(_Inout_ PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
+void asinanglerat(PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
 
 {
     asinrat(pa, radix, precision);
     ascalerat(pa, angletype, precision);
 }
 
-void asinrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void asinrat(PRAT* px, uint32_t radix, int32_t precision)
 
 {
     PRAT pret = nullptr;
@@ -164,7 +164,7 @@ void asinrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
 //
 //-----------------------------------------------------------------------------
 
-void acosanglerat(_Inout_ PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
+void acosanglerat(PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
 
 {
     acosrat(pa, radix, precision);
@@ -190,7 +190,7 @@ void _acosrat(PRAT* px, int32_t precision)
     DESTROYTAYLOR();
 }
 
-void acosrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void acosrat(PRAT* px, uint32_t radix, int32_t precision)
 
 {
     int32_t sgn = SIGN(*px);
@@ -249,7 +249,7 @@ void acosrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
 //
 //-----------------------------------------------------------------------------
 
-void atananglerat(_Inout_ PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
+void atananglerat(PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
 
 {
     atanrat(pa, radix, precision);
@@ -276,7 +276,7 @@ void _atanrat(PRAT* px, int32_t precision)
     DESTROYTAYLOR();
 }
 
-void atanrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void atanrat(PRAT* px, uint32_t radix, int32_t precision)
 
 {
     PRAT tmpx = nullptr;

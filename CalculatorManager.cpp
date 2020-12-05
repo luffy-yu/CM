@@ -17,7 +17,7 @@ static constexpr size_t MAX_HISTORY_ITEMS = 20;
 
 namespace CalculationManager
 {
-    CalculatorManager::CalculatorManager(_In_ ICalcDisplay* displayCallback, _In_ IResourceProvider* resourceProvider)
+    CalculatorManager::CalculatorManager(ICalcDisplay* displayCallback, IResourceProvider* resourceProvider)
         : m_displayCallback(displayCallback)
         , m_currentCalculatorEngine(nullptr)
         , m_resourceProvider(resourceProvider)
@@ -37,7 +37,7 @@ namespace CalculationManager
     /// Used to set the primary display value on ViewModel
     /// </summary>
     /// <param name="text">wstring representing text to be displayed</param>
-    void CalculatorManager::SetPrimaryDisplay(_In_ const wstring& displayString, _In_ bool isError)
+    void CalculatorManager::SetPrimaryDisplay(const wstring& displayString, bool isError)
     {
         if (!m_inHistoryItemLoadMode)
         {
@@ -82,8 +82,8 @@ namespace CalculationManager
     /// </summary>
     /// <param name="expressionString">wstring representing expression to be displayed</param>
     void CalculatorManager::SetExpressionDisplay(
-        _Inout_ shared_ptr<vector<pair<wstring, int>>> const& tokens,
-        _Inout_ shared_ptr<vector<shared_ptr<IExpressionCommand>>> const& commands)
+        shared_ptr<vector<pair<wstring, int>>> const& tokens,
+        shared_ptr<vector<shared_ptr<IExpressionCommand>>> const& commands)
     {
         if (!m_inHistoryItemLoadMode)
         {
@@ -96,7 +96,7 @@ namespace CalculationManager
     /// Passed in string representations of memorized numbers get passed to the client
     /// </summary>
     /// <param name="memorizedNumber">vector containing wstring values of memorized numbers</param>
-    void CalculatorManager::SetMemorizedNumbers(_In_ const vector<wstring>& memorizedNumbers)
+    void CalculatorManager::SetMemorizedNumbers(const vector<wstring>& memorizedNumbers)
     {
         m_displayCallback->SetMemorizedNumbers(memorizedNumbers);
     }
@@ -105,7 +105,7 @@ namespace CalculationManager
     /// Callback from the engine
     /// </summary>
     /// <param name="parenthesisCount">string containing the parenthesis count</param>
-    void CalculatorManager::SetParenthesisNumber(_In_ unsigned int parenthesisCount)
+    void CalculatorManager::SetParenthesisNumber(unsigned int parenthesisCount)
     {
         m_displayCallback->SetParenthesisNumber(parenthesisCount);
     }
@@ -211,7 +211,7 @@ namespace CalculationManager
     /// Handle special commands such as mode change and combination of two commands.
     /// </summary>
     /// <param name="command">Enum Command</command>
-    void CalculatorManager::SendCommand(_In_ Command command)
+    void CalculatorManager::SendCommand(Command command)
     {
         // When the expression line is cleared, we save the current state, which includes,
         // primary display, memory, and degree mode
@@ -348,7 +348,7 @@ namespace CalculationManager
     /// The memorized number gets loaded to the primary display
     /// </summary>
     /// <param name="indexOfMemory">Index of the target memory</param>
-    void CalculatorManager::MemorizedNumberLoad(_In_ unsigned int indexOfMemory)
+    void CalculatorManager::MemorizedNumberLoad(unsigned int indexOfMemory)
     {
         if (m_currentCalculatorEngine->FInErrorState())
         {
@@ -366,7 +366,7 @@ namespace CalculationManager
     /// Notify the client with new the new memorize value vector
     /// </summary>
     /// <param name="indexOfMemory">Index of the target memory</param>
-    void CalculatorManager::MemorizedNumberAdd(_In_ unsigned int indexOfMemory)
+    void CalculatorManager::MemorizedNumberAdd(unsigned int indexOfMemory)
     {
         if (m_currentCalculatorEngine->FInErrorState())
         {
@@ -390,7 +390,7 @@ namespace CalculationManager
         m_displayCallback->MemoryItemChanged(indexOfMemory);
     }
 
-    void CalculatorManager::MemorizedNumberClear(_In_ unsigned int indexOfMemory)
+    void CalculatorManager::MemorizedNumberClear(unsigned int indexOfMemory)
     {
         if (indexOfMemory < m_memorizedNumbers.size())
         {
@@ -404,7 +404,7 @@ namespace CalculationManager
     /// Notify the client with new the new memorize value vector
     /// </summary>
     /// <param name="indexOfMemory">Index of the target memory</param>
-    void CalculatorManager::MemorizedNumberSubtract(_In_ unsigned int indexOfMemory)
+    void CalculatorManager::MemorizedNumberSubtract(unsigned int indexOfMemory)
     {
         if (m_currentCalculatorEngine->FInErrorState())
         {
@@ -448,7 +448,7 @@ namespace CalculationManager
     /// Saved RAT number needs to be copied and passed in, as CCalcEngine destroyed the passed in RAT
     /// </summary>
     /// <param name="indexOfMemory">Index of the target memory</param>
-    void CalculatorManager::MemorizedNumberSelect(_In_ unsigned int indexOfMemory)
+    void CalculatorManager::MemorizedNumberSelect(unsigned int indexOfMemory)
     {
         if (m_currentCalculatorEngine->FInErrorState())
         {
@@ -464,7 +464,7 @@ namespace CalculationManager
     /// When memory is modified, destroy the old RAT and put the new RAT in vector
     /// </summary>
     /// <param name="indexOfMemory">Index of the target memory</param>
-    void CalculatorManager::MemorizedNumberChanged(_In_ unsigned int indexOfMemory)
+    void CalculatorManager::MemorizedNumberChanged(unsigned int indexOfMemory)
     {
         if (m_currentCalculatorEngine->FInErrorState())
         {
@@ -483,22 +483,22 @@ namespace CalculationManager
         return m_pHistory->GetHistory();
     }
 
-    vector<shared_ptr<HISTORYITEM>> const& CalculatorManager::GetHistoryItems(_In_ CalculatorMode mode)
+    vector<shared_ptr<HISTORYITEM>> const& CalculatorManager::GetHistoryItems(CalculatorMode mode)
     {
         return (mode == CalculatorMode::Standard) ? m_pStdHistory->GetHistory() : m_pSciHistory->GetHistory();
     }
 
-    shared_ptr<HISTORYITEM> const& CalculatorManager::GetHistoryItem(_In_ unsigned int uIdx)
+    shared_ptr<HISTORYITEM> const& CalculatorManager::GetHistoryItem(unsigned int uIdx)
     {
         return m_pHistory->GetHistoryItem(uIdx);
     }
 
-    void CalculatorManager::OnHistoryItemAdded(_In_ unsigned int addedItemIndex)
+    void CalculatorManager::OnHistoryItemAdded(unsigned int addedItemIndex)
     {
         m_displayCallback->OnHistoryItemAdded(addedItemIndex);
     }
 
-    bool CalculatorManager::RemoveHistoryItem(_In_ unsigned int uIdx)
+    bool CalculatorManager::RemoveHistoryItem(unsigned int uIdx)
     {
         return m_pHistory->RemoveItem(uIdx);
     }
@@ -585,7 +585,7 @@ namespace CalculationManager
         return m_currentCalculatorEngine->IsInputEmpty();
     }
 
-    void CalculatorManager::SetInHistoryItemLoadMode(_In_ bool isHistoryItemLoadMode)
+    void CalculatorManager::SetInHistoryItemLoadMode(bool isHistoryItemLoadMode)
     {
         m_inHistoryItemLoadMode = isHistoryItemLoadMode;
     }

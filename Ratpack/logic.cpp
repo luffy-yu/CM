@@ -17,7 +17,7 @@
 
 using namespace std;
 
-void lshrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision)
+void lshrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision)
 
 {
     PRAT pwr = nullptr;
@@ -39,7 +39,7 @@ void lshrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision)
     }
 }
 
-void rshrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision)
+void rshrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision)
 
 {
     PRAT pwr = nullptr;
@@ -71,19 +71,19 @@ enum
     FUNC_XOR
 } BOOL_FUNCS;
 
-void andrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision)
+void andrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision)
 
 {
     boolrat(pa, b, FUNC_AND, radix, precision);
 }
 
-void orrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision)
+void orrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision)
 
 {
     boolrat(pa, b, FUNC_OR, radix, precision);
 }
 
-void xorrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision)
+void xorrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision)
 
 {
     boolrat(pa, b, FUNC_XOR, radix, precision);
@@ -189,7 +189,7 @@ void boolnum(PNUMBER* pa, PNUMBER b, int func)
 //
 //-----------------------------------------------------------------------------
 
-void remrat(_Inout_ PRAT* pa, _In_ PRAT b)
+void remrat(PRAT* pa, PRAT b)
 
 {
     if (zerrat(b))
@@ -226,7 +226,7 @@ void remrat(_Inout_ PRAT* pa, _In_ PRAT b)
 //
 //-----------------------------------------------------------------------------
 
-void modrat(_Inout_ PRAT* pa, _In_ PRAT b)
+void modrat(PRAT* pa, PRAT b)
 {
     // contrary to remrat(X, 0) returning 0, modrat(X, 0) must return X
     if (zerrat(b))

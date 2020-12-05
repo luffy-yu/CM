@@ -7,7 +7,7 @@
 
 namespace CalcManager::NumberFormattingUtils
 {
-    void TrimTrailingZeros(_Inout_ std::wstring& input);
+    void TrimTrailingZeros(std::wstring& input);
     unsigned int GetNumberDigits(std::wstring value);
     unsigned int GetNumberDigitsWholeNumberPart(double value);
     std::wstring RoundSignificantDigits(double value, unsigned int numberSignificantDigits);

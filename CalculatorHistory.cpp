@@ -38,8 +38,8 @@ CalculatorHistory::CalculatorHistory(size_t maxSize)
 }
 
 unsigned int CalculatorHistory::AddToHistory(
-    _In_ shared_ptr<vector<pair<wstring, int>>> const& tokens,
-    _In_ shared_ptr<vector<shared_ptr<IExpressionCommand>>> const& commands,
+    shared_ptr<vector<pair<wstring, int>>> const& tokens,
+    shared_ptr<vector<shared_ptr<IExpressionCommand>>> const& commands,
     wstring_view result)
 {
     shared_ptr<HISTORYITEM> spHistoryItem = make_shared<HISTORYITEM>();
@@ -51,7 +51,7 @@ unsigned int CalculatorHistory::AddToHistory(
     return AddItem(spHistoryItem);
 }
 
-unsigned int CalculatorHistory::AddItem(_In_ shared_ptr<HISTORYITEM> const& spHistoryItem)
+unsigned int CalculatorHistory::AddItem(shared_ptr<HISTORYITEM> const& spHistoryItem)
 {
     if (m_historyItems.size() >= m_maxHistorySize)
     {

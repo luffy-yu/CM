@@ -9,7 +9,7 @@ namespace CalcManager::NumberFormattingUtils
     /// Trims out any trailing zeros or decimals in the given input string
     /// </summary>
     /// <param name="number">number to trim</param>
-    void TrimTrailingZeros(_Inout_ wstring& number)
+    void TrimTrailingZeros(wstring& number)
     {
         if (number.find(L'.') == wstring::npos)
         {

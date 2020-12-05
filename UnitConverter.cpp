@@ -34,7 +34,7 @@ unordered_map<wstring, wchar_t> unquoteConversions;
 /// Constructor, sets up all the variables and requires a configLoader
 /// </summary>
 /// <param name="dataLoader">An instance of the IConverterDataLoader interface which we use to read in category/unit names and conversion data</param>
-UnitConverter::UnitConverter(_In_ const shared_ptr<IConverterDataLoader>& dataLoader)
+UnitConverter::UnitConverter(const shared_ptr<IConverterDataLoader>& dataLoader)
     : UnitConverter::UnitConverter(dataLoader, nullptr)
 {
 }
@@ -44,7 +44,7 @@ UnitConverter::UnitConverter(_In_ const shared_ptr<IConverterDataLoader>& dataLo
 /// </summary>
 /// <param name="dataLoader">An instance of the IConverterDataLoader interface which we use to read in category/unit names and conversion data</param>
 /// <param name="currencyDataLoader">An instance of the IConverterDataLoader interface, specialized for loading currency data from an internet service</param>
-UnitConverter::UnitConverter(_In_ const shared_ptr<IConverterDataLoader>& dataLoader, _In_ const shared_ptr<IConverterDataLoader>& currencyDataLoader)
+UnitConverter::UnitConverter(const shared_ptr<IConverterDataLoader>& dataLoader, const shared_ptr<IConverterDataLoader>& currencyDataLoader)
 {
     m_dataLoader = dataLoader;
     m_currencyDataLoader = currencyDataLoader;
@@ -525,7 +525,7 @@ void UnitConverter::SendCommand(Command command)
 /// Sets the callback interface to send display update calls to
 /// </summary>
 /// <param name="newCallback">instance of IDisplayCallback interface that receives our update calls</param>
-void UnitConverter::SetViewModelCallback(_In_ const shared_ptr<IUnitConverterVMCallback>& newCallback)
+void UnitConverter::SetViewModelCallback(const shared_ptr<IUnitConverterVMCallback>& newCallback)
 {
     m_vmCallback = newCallback;
     if (CheckLoad())
@@ -534,7 +534,7 @@ void UnitConverter::SetViewModelCallback(_In_ const shared_ptr<IUnitConverterVMC
     }
 }
 
-void UnitConverter::SetViewModelCurrencyCallback(_In_ const shared_ptr<IViewModelCurrencyCallback>& newCallback)
+void UnitConverter::SetViewModelCurrencyCallback(const shared_ptr<IViewModelCurrencyCallback>& newCallback)
 {
     m_vmCurrencyCallback = newCallback;
 

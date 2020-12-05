@@ -33,7 +33,7 @@ public:
     void CompleteHistoryLine(std::wstring_view numStr);
     void CompleteEquation(std::wstring_view numStr);
     void ClearHistoryLine(std::wstring_view errStr);
-    int AddCommand(_In_ const std::shared_ptr<IExpressionCommand>& spCommand);
+    int AddCommand(const std::shared_ptr<IExpressionCommand>& spCommand);
     void UpdateHistoryExpression(uint32_t radix, int32_t precision);
     void SetDecimalSymbol(wchar_t decimalSymbol);
 

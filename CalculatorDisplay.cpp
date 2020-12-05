@@ -27,7 +27,7 @@ CalculatorDisplay::CalculatorDisplay()
 //    m_historyCallbackReference = callbackReference;
 //}
 
-void CalculatorDisplay::SetPrimaryDisplay(_In_ const wstring& displayStringValue, _In_ bool isError)
+void CalculatorDisplay::SetPrimaryDisplay(const wstring& displayStringValue, bool isError)
 {
     //if (m_callbackReference)
     //{
@@ -42,7 +42,7 @@ void CalculatorDisplay::SetPrimaryDisplay(_In_ const wstring& displayStringValue
     //std::cout << ws2s(displayStringValue) << std::endl;
 }
 
-void CalculatorDisplay::SetParenthesisNumber(_In_ unsigned int parenthesisCount)
+void CalculatorDisplay::SetParenthesisNumber(unsigned int parenthesisCount)
 {
     //if (m_callbackReference != nullptr)
     //{
@@ -79,8 +79,8 @@ void CalculatorDisplay::SetIsInError(bool isError)
 }
 
 void CalculatorDisplay::SetExpressionDisplay(
-    _Inout_ std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
-    _Inout_ std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands)
+    std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
+    std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands)
 {
     //if (m_callbackReference != nullptr)
     //{
@@ -93,7 +93,7 @@ void CalculatorDisplay::SetExpressionDisplay(
     m_StandardCalculatorViewModel.SetExpressionDisplay(tokens, commands);
 }
 
-void CalculatorDisplay::SetMemorizedNumbers(_In_ const vector<std::wstring>& newMemorizedNumbers)
+void CalculatorDisplay::SetMemorizedNumbers(const vector<std::wstring>& newMemorizedNumbers)
 {
     //if (m_callbackReference != nullptr)
     //{
@@ -105,7 +105,7 @@ void CalculatorDisplay::SetMemorizedNumbers(_In_ const vector<std::wstring>& new
     std::cout << "SetMemorizedNumbers" << std::endl;
 }
 
-void CalculatorDisplay::OnHistoryItemAdded(_In_ unsigned int addedItemIndex)
+void CalculatorDisplay::OnHistoryItemAdded(unsigned int addedItemIndex)
 {
     //if (m_historyCallbackReference != nullptr)
     //{

@@ -39,7 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-void _exprat(_Inout_ PRAT* px, int32_t precision)
+void _exprat(PRAT* px, int32_t precision)
 
 {
     CREATETAYLOR();
@@ -58,7 +58,7 @@ void _exprat(_Inout_ PRAT* px, int32_t precision)
     DESTROYTAYLOR();
 }
 
-void exprat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void exprat(PRAT* px, uint32_t radix, int32_t precision)
 
 {
     PRAT pwr = nullptr;
@@ -149,7 +149,7 @@ void _lograt(PRAT* px, int32_t precision)
     DESTROYTAYLOR();
 }
 
-void lograt(_Inout_ PRAT* px, int32_t precision)
+void lograt(PRAT* px, int32_t precision)
 
 {
     PRAT pwr = nullptr;    // pwr is the large scaling factor.
@@ -217,7 +217,7 @@ void lograt(_Inout_ PRAT* px, int32_t precision)
     destroyrat(pwr);
 }
 
-void log10rat(_Inout_ PRAT* px, int32_t precision)
+void log10rat(PRAT* px, int32_t precision)
 
 {
     lograt(px, precision);
@@ -260,7 +260,7 @@ bool IsEven(PRAT x, uint32_t radix, int32_t precision)
 //
 //
 //---------------------------------------------------------------------------
-void powrat(_Inout_ PRAT* px, _In_ PRAT y, uint32_t radix, int32_t precision)
+void powrat(PRAT* px, PRAT y, uint32_t radix, int32_t precision)
 {
     // Handle cases where px or y is 0 by calling powratcomp directly
     if (zerrat(*px) || zerrat(y))
@@ -287,7 +287,7 @@ void powrat(_Inout_ PRAT* px, _In_ PRAT y, uint32_t radix, int32_t precision)
     }
 }
 
-void powratNumeratorDenominator(_Inout_ PRAT* px, _In_ PRAT y, uint32_t radix, int32_t precision)
+void powratNumeratorDenominator(PRAT* px, PRAT y, uint32_t radix, int32_t precision)
 {
     // Prepare rationals
     PRAT yNumerator = nullptr;
@@ -396,7 +396,7 @@ void powratNumeratorDenominator(_Inout_ PRAT* px, _In_ PRAT y, uint32_t radix, i
 //
 //
 //---------------------------------------------------------------------------
-void powratcomp(_Inout_ PRAT* px, _In_ PRAT y, uint32_t radix, int32_t precision)
+void powratcomp(PRAT* px, PRAT y, uint32_t radix, int32_t precision)
 {
     int32_t sign = SIGN(*px);
 

@@ -21,7 +21,7 @@
 #include <string>
 #include "CalcErr.h"
 #include <cstring> // for memmove
-#include "sal_cross_platform.h"   // for SAL
+//#include "sal_cross_platform.h"   // for SAL
 
 static constexpr uint32_t BASEXPWR = 31L;     // Internal log2(BASEX)
 static constexpr uint32_t BASEX = 0x80000000; // Internal radix used in calculations, hope to raise
@@ -332,25 +332,25 @@ extern void SetDecimalSeparator(wchar_t decimalSeparator);
 // Call whenever either radix or precision changes, is smarter about recalculating constants.
 extern void ChangeConstants(uint32_t radix, int32_t precision);
 
-extern bool equnum(_In_ PNUMBER a, _In_ PNUMBER b);  // returns true of a == b
-extern bool lessnum(_In_ PNUMBER a, _In_ PNUMBER b); // returns true of a < b
-extern bool zernum(_In_ PNUMBER a);                  // returns true of a == 0
-extern bool zerrat(_In_ PRAT a);                     // returns true if a == 0/q
-extern std::wstring NumberToString(_Inout_ PNUMBER& pnum, NumberFormat format, uint32_t radix, int32_t precision);
+extern bool equnum(PNUMBER a, PNUMBER b);  // returns true of a == b
+extern bool lessnum(PNUMBER a, PNUMBER b); // returns true of a < b
+extern bool zernum(PNUMBER a);                  // returns true of a == 0
+extern bool zerrat(PRAT a);                     // returns true if a == 0/q
+extern std::wstring NumberToString(PNUMBER& pnum, NumberFormat format, uint32_t radix, int32_t precision);
 
 // returns a text representation of a PRAT
-extern std::wstring RatToString(_Inout_ PRAT& prat, NumberFormat format, uint32_t radix, int32_t precision);
+extern std::wstring RatToString(PRAT& prat, NumberFormat format, uint32_t radix, int32_t precision);
 // converts a PRAT into a PNUMBER
-extern PNUMBER RatToNumber(_In_ PRAT prat, uint32_t radix, int32_t precision);
+extern PNUMBER RatToNumber(PRAT prat, uint32_t radix, int32_t precision);
 // flattens a PRAT by converting it to a PNUMBER and back to a PRAT
-extern void flatrat(_Inout_ PRAT& prat, uint32_t radix, int32_t precision);
+extern void flatrat(PRAT& prat, uint32_t radix, int32_t precision);
 
-extern int32_t numtoi32(_In_ PNUMBER pnum, uint32_t radix);
-extern int32_t rattoi32(_In_ PRAT prat, uint32_t radix, int32_t precision);
-uint64_t rattoUi64(_In_ PRAT prat, uint32_t radix, int32_t precision);
-extern PNUMBER _createnum(_In_ uint32_t size); // returns an empty number structure with size digits
-extern PNUMBER nRadixxtonum(_In_ PNUMBER a, uint32_t radix, int32_t precision);
-extern PNUMBER gcd(_In_ PNUMBER a, _In_ PNUMBER b);
+extern int32_t numtoi32(PNUMBER pnum, uint32_t radix);
+extern int32_t rattoi32(PRAT prat, uint32_t radix, int32_t precision);
+uint64_t rattoUi64(PRAT prat, uint32_t radix, int32_t precision);
+extern PNUMBER _createnum(uint32_t size); // returns an empty number structure with size digits
+extern PNUMBER nRadixxtonum(PNUMBER a, uint32_t radix, int32_t precision);
+extern PNUMBER gcd(PNUMBER a, PNUMBER b);
 extern PNUMBER StringToNumber(
     std::wstring_view numberString,
     uint32_t radix,
@@ -364,122 +364,122 @@ extern PNUMBER i32factnum(int32_t ini32, uint32_t radix);
 extern PNUMBER i32prodnum(int32_t start, int32_t stop, uint32_t radix);
 extern PNUMBER i32tonum(int32_t ini32, uint32_t radix);
 extern PNUMBER Ui32tonum(uint32_t ini32, uint32_t radix);
-extern PNUMBER numtonRadixx(_In_ PNUMBER a, uint32_t radix);
+extern PNUMBER numtonRadixx(PNUMBER a, uint32_t radix);
 
 // creates a empty/undefined rational representation (p/q)
 extern PRAT _createrat(void);
 
 // returns a new rat structure with the acos of x->p/x->q taking into account
 // angle type
-extern void acosanglerat(_Inout_ PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
+extern void acosanglerat(PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the acosh of x->p/x->q
-extern void acoshrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void acoshrat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the acos of x->p/x->q
-extern void acosrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void acosrat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the asin of x->p/x->q taking into account
 // angle type
-extern void asinanglerat(_Inout_ PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
+extern void asinanglerat(PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
 
-extern void asinhrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void asinhrat(PRAT* px, uint32_t radix, int32_t precision);
 // returns a new rat structure with the asinh of x->p/x->q
 
 // returns a new rat structure with the asin of x->p/x->q
-extern void asinrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void asinrat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the atan of x->p/x->q taking into account
 // angle type
-extern void atananglerat(_Inout_ PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
+extern void atananglerat(PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the atanh of x->p/x->q
-extern void atanhrat(_Inout_ PRAT* px, int32_t precision);
+extern void atanhrat(PRAT* px, int32_t precision);
 
 // returns a new rat structure with the atan of x->p/x->q
-extern void atanrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void atanrat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the cosh of x->p/x->q
-extern void coshrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void coshrat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the cos of x->p/x->q
-extern void cosrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void cosrat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the cos of x->p/x->q taking into account
 // angle type
-extern void cosanglerat(_Inout_ PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
+extern void cosanglerat(PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the exp of x->p/x->q this should not be called explicitly.
-extern void _exprat(_Inout_ PRAT* px, int32_t precision);
+extern void _exprat(PRAT* px, int32_t precision);
 
 // returns a new rat structure with the exp of x->p/x->q
-extern void exprat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void exprat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the log base 10 of x->p/x->q
-extern void log10rat(_Inout_ PRAT* px, int32_t precision);
+extern void log10rat(PRAT* px, int32_t precision);
 
 // returns a new rat structure with the natural log of x->p/x->q
-extern void lograt(_Inout_ PRAT* px, int32_t precision);
+extern void lograt(PRAT* px, int32_t precision);
 
 extern PRAT i32torat(int32_t ini32);
 extern PRAT Ui32torat(uint32_t inui32);
-extern PRAT numtorat(_In_ PNUMBER pin, uint32_t radix);
+extern PRAT numtorat(PNUMBER pin, uint32_t radix);
 
-extern void sinhrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
-extern void sinrat(_Inout_ PRAT* px);
+extern void sinhrat(PRAT* px, uint32_t radix, int32_t precision);
+extern void sinrat(PRAT* px);
 
 // returns a new rat structure with the sin of x->p/x->q taking into account
 // angle type
-extern void sinanglerat(_Inout_ PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
+extern void sinanglerat(PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
 
-extern void tanhrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
-extern void tanrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
+extern void tanhrat(PRAT* px, uint32_t radix, int32_t precision);
+extern void tanrat(PRAT* px, uint32_t radix, int32_t precision);
 
 // returns a new rat structure with the tan of x->p/x->q taking into account
 // angle type
-extern void tananglerat(_Inout_ PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
+extern void tananglerat(PRAT* px, AngleType angletype, uint32_t radix, int32_t precision);
 
-extern void _dupnum(_In_ PNUMBER dest, _In_ const NUMBER* const src);
+extern void _dupnum(PNUMBER dest, const NUMBER* const src);
 
-extern void _destroynum(_Frees_ptr_opt_ PNUMBER pnum);
-extern void _destroyrat(_Frees_ptr_opt_ PRAT prat);
-extern void addnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix);
-extern void addrat(_Inout_ PRAT* pa, _In_ PRAT b, int32_t precision);
-extern void andrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void divnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix, int32_t precision);
-extern void divnumx(_Inout_ PNUMBER* pa, _In_ PNUMBER b, int32_t precision);
-extern void divrat(_Inout_ PRAT* pa, _In_ PRAT b, int32_t precision);
-extern void fracrat(_Inout_ PRAT* pa, uint32_t radix, int32_t precision);
-extern void factrat(_Inout_ PRAT* pa, uint32_t radix, int32_t precision);
-extern void remrat(_Inout_ PRAT* pa, _In_ PRAT b);
-extern void modrat(_Inout_ PRAT* pa, _In_ PRAT b);
-extern void gcdrat(_Inout_ PRAT* pa, int32_t precision);
-extern void intrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
-extern void mulnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix);
-extern void mulnumx(_Inout_ PNUMBER* pa, _In_ PNUMBER b);
-extern void mulrat(_Inout_ PRAT* pa, _In_ PRAT b, int32_t precision);
-extern void numpowi32(_Inout_ PNUMBER* proot, int32_t power, uint32_t radix, int32_t precision);
-extern void numpowi32x(_Inout_ PNUMBER* proot, int32_t power);
-extern void orrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void powrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void powratNumeratorDenominator(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void powratcomp(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void ratpowi32(_Inout_ PRAT* proot, int32_t power, int32_t precision);
-extern void remnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix);
-extern void rootrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void scale2pi(_Inout_ PRAT* px, uint32_t radix, int32_t precision);
-extern void scale(_Inout_ PRAT* px, _In_ PRAT scalefact, uint32_t radix, int32_t precision);
-extern void subrat(_Inout_ PRAT* pa, _In_ PRAT b, int32_t precision);
-extern void xorrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void lshrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern void rshrat(_Inout_ PRAT* pa, _In_ PRAT b, uint32_t radix, int32_t precision);
-extern bool rat_equ(_In_ PRAT a, _In_ PRAT b, int32_t precision);
-extern bool rat_neq(_In_ PRAT a, _In_ PRAT b, int32_t precision);
-extern bool rat_gt(_In_ PRAT a, _In_ PRAT b, int32_t precision);
-extern bool rat_ge(_In_ PRAT a, _In_ PRAT b, int32_t precision);
-extern bool rat_lt(_In_ PRAT a, _In_ PRAT b, int32_t precision);
-extern bool rat_le(_In_ PRAT a, _In_ PRAT b, int32_t precision);
-extern void inbetween(_In_ PRAT* px, _In_ PRAT range, int32_t precision);
-extern void trimit(_Inout_ PRAT* px, int32_t precision);
-extern void _dumprawrat(_In_ const wchar_t* varname, _In_ PRAT rat, std::wostream& out);
-extern void _dumprawnum(_In_ const wchar_t* varname, _In_ PNUMBER num, std::wostream& out);
+extern void _destroynum(PNUMBER pnum);
+extern void _destroyrat(PRAT prat);
+extern void addnum(PNUMBER* pa, PNUMBER b, uint32_t radix);
+extern void addrat(PRAT* pa, PRAT b, int32_t precision);
+extern void andrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void divnum(PNUMBER* pa, PNUMBER b, uint32_t radix, int32_t precision);
+extern void divnumx(PNUMBER* pa, PNUMBER b, int32_t precision);
+extern void divrat(PRAT* pa, PRAT b, int32_t precision);
+extern void fracrat(PRAT* pa, uint32_t radix, int32_t precision);
+extern void factrat(PRAT* pa, uint32_t radix, int32_t precision);
+extern void remrat(PRAT* pa, PRAT b);
+extern void modrat(PRAT* pa, PRAT b);
+extern void gcdrat(PRAT* pa, int32_t precision);
+extern void intrat(PRAT* px, uint32_t radix, int32_t precision);
+extern void mulnum(PNUMBER* pa, PNUMBER b, uint32_t radix);
+extern void mulnumx(PNUMBER* pa, PNUMBER b);
+extern void mulrat(PRAT* pa, PRAT b, int32_t precision);
+extern void numpowi32(PNUMBER* proot, int32_t power, uint32_t radix, int32_t precision);
+extern void numpowi32x(PNUMBER* proot, int32_t power);
+extern void orrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void powrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void powratNumeratorDenominator(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void powratcomp(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void ratpowi32(PRAT* proot, int32_t power, int32_t precision);
+extern void remnum(PNUMBER* pa, PNUMBER b, uint32_t radix);
+extern void rootrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void scale2pi(PRAT* px, uint32_t radix, int32_t precision);
+extern void scale(PRAT* px, PRAT scalefact, uint32_t radix, int32_t precision);
+extern void subrat(PRAT* pa, PRAT b, int32_t precision);
+extern void xorrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void lshrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern void rshrat(PRAT* pa, PRAT b, uint32_t radix, int32_t precision);
+extern bool rat_equ(PRAT a, PRAT b, int32_t precision);
+extern bool rat_neq(PRAT a, PRAT b, int32_t precision);
+extern bool rat_gt(PRAT a, PRAT b, int32_t precision);
+extern bool rat_ge(PRAT a, PRAT b, int32_t precision);
+extern bool rat_lt(PRAT a, PRAT b, int32_t precision);
+extern bool rat_le(PRAT a, PRAT b, int32_t precision);
+extern void inbetween(PRAT* px, PRAT range, int32_t precision);
+extern void trimit(PRAT* px, int32_t precision);
+extern void _dumprawrat(const wchar_t* varname, PRAT rat, std::wostream& out);
+extern void _dumprawnum(const wchar_t* varname, PNUMBER num, std::wostream& out);

@@ -6,7 +6,7 @@
 #include <vector>
 #include <unordered_map>
 #include <future>
-#include "sal_cross_platform.h" // for SAL
+//#include "sal_cross_platform.h" // for SAL
 #include <memory>               // for std::shared_ptr
 
 namespace UnitConversionManager
@@ -170,10 +170,10 @@ namespace UnitConversionManager
     public:
         virtual ~IViewModelCurrencyCallback(){};
         virtual void CurrencyDataLoadFinished(bool didLoad) = 0;
-        virtual void CurrencySymbolsCallback(_In_ const std::wstring& fromSymbol, _In_ const std::wstring& toSymbol) = 0;
-        virtual void CurrencyRatiosCallback(_In_ const std::wstring& ratioEquality, _In_ const std::wstring& accRatioEquality) = 0;
-        virtual void CurrencyTimestampCallback(_In_ const std::wstring& timestamp, bool isWeekOldData) = 0;
-        virtual void NetworkBehaviorChanged(_In_ int newBehavior) = 0;
+        virtual void CurrencySymbolsCallback(const std::wstring& fromSymbol, const std::wstring& toSymbol) = 0;
+        virtual void CurrencyRatiosCallback(const std::wstring& ratioEquality, const std::wstring& accRatioEquality) = 0;
+        virtual void CurrencyTimestampCallback(const std::wstring& timestamp, bool isWeekOldData) = 0;
+        virtual void NetworkBehaviorChanged(int newBehavior) = 0;
     };
 
     class IConverterDataLoader
@@ -192,9 +192,9 @@ namespace UnitConversionManager
     public:
         virtual void SetViewModelCallback(const std::shared_ptr<UnitConversionManager::IViewModelCurrencyCallback>& callback) = 0;
         virtual std::pair<std::wstring, std::wstring>
-        GetCurrencySymbols(_In_ const UnitConversionManager::Unit& unit1, _In_ const UnitConversionManager::Unit& unit2) = 0;
+        GetCurrencySymbols(const UnitConversionManager::Unit& unit1, const UnitConversionManager::Unit& unit2) = 0;
         virtual std::pair<std::wstring, std::wstring>
-        GetCurrencyRatioEquality(_In_ const UnitConversionManager::Unit& unit1, _In_ const UnitConversionManager::Unit& unit2) = 0;
+        GetCurrencyRatioEquality(const UnitConversionManager::Unit& unit1, const UnitConversionManager::Unit& unit2) = 0;
         virtual std::wstring GetCurrencyTimestamp() = 0;
 
         virtual std::future<bool> TryLoadDataFromCacheAsync() = 0;
@@ -224,10 +224,10 @@ namespace UnitConversionManager
         virtual void SetCurrentUnitTypes(const Unit& fromType, const Unit& toType) = 0;
         virtual void SwitchActive(const std::wstring& newValue) = 0;
         virtual std::wstring SaveUserPreferences() = 0;
-        virtual void RestoreUserPreferences(_In_ std::wstring_view userPreferences) = 0;
+        virtual void RestoreUserPreferences(std::wstring_view userPreferences) = 0;
         virtual void SendCommand(Command command) = 0;
-        virtual void SetViewModelCallback(_In_ const std::shared_ptr<IUnitConverterVMCallback>& newCallback) = 0;
-        virtual void SetViewModelCurrencyCallback(_In_ const std::shared_ptr<IViewModelCurrencyCallback>& newCallback) = 0;
+        virtual void SetViewModelCallback(const std::shared_ptr<IUnitConverterVMCallback>& newCallback) = 0;
+        virtual void SetViewModelCurrencyCallback(const std::shared_ptr<IViewModelCurrencyCallback>& newCallback) = 0;
         virtual std::future<std::pair<bool, std::wstring>> RefreshCurrencyRatios() = 0;
         virtual void Calculate() = 0;
         virtual void ResetCategoriesAndRatios() = 0;
@@ -236,8 +236,8 @@ namespace UnitConversionManager
     class UnitConverter : public IUnitConverter, public std::enable_shared_from_this<UnitConverter>
     {
     public:
-        UnitConverter(_In_ const std::shared_ptr<IConverterDataLoader>& dataLoader);
-        UnitConverter(_In_ const std::shared_ptr<IConverterDataLoader>& dataLoader, _In_ const std::shared_ptr<IConverterDataLoader>& currencyDataLoader);
+        UnitConverter(const std::shared_ptr<IConverterDataLoader>& dataLoader);
+        UnitConverter(const std::shared_ptr<IConverterDataLoader>& dataLoader, const std::shared_ptr<IConverterDataLoader>& currencyDataLoader);
 
         // IUnitConverter
         void Initialize() override;
@@ -249,8 +249,8 @@ namespace UnitConversionManager
         std::wstring SaveUserPreferences() override;
         void RestoreUserPreferences(std::wstring_view userPreference) override;
         void SendCommand(Command command) override;
-        void SetViewModelCallback(_In_ const std::shared_ptr<IUnitConverterVMCallback>& newCallback) override;
-        void SetViewModelCurrencyCallback(_In_ const std::shared_ptr<IViewModelCurrencyCallback>& newCallback) override;
+        void SetViewModelCallback(const std::shared_ptr<IUnitConverterVMCallback>& newCallback) override;
+        void SetViewModelCurrencyCallback(const std::shared_ptr<IViewModelCurrencyCallback>& newCallback) override;
         std::future<std::pair<bool, std::wstring>> RefreshCurrencyRatios() override;
         void Calculate() override;
         void ResetCategoriesAndRatios() override;

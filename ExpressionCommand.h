@@ -9,10 +9,10 @@
 class CParentheses final : public IParenthesisCommand
 {
 public:
-    CParentheses(_In_ int command);
+    CParentheses(int command);
     int GetCommand() const override;
     CalculationManager::CommandType GetCommandType() const override;
-    void Accept(_In_ ISerializeCommandVisitor& commandVisitor) override;
+    void Accept(ISerializeCommandVisitor& commandVisitor) override;
 
 private:
     int m_command;
@@ -27,7 +27,7 @@ public:
     CalculationManager::CommandType GetCommandType() const override;
     void SetCommand(int command) override;
     void SetCommands(int command1, int command2) override;
-    void Accept(_In_ ISerializeCommandVisitor& commandVisitor) override;
+    void Accept(ISerializeCommandVisitor& commandVisitor) override;
 
 private:
     std::shared_ptr<std::vector<int>> m_command;
@@ -40,7 +40,7 @@ public:
     void SetCommand(int command) override;
     int GetCommand() const override;
     CalculationManager::CommandType GetCommandType() const override;
-    void Accept(_In_ ISerializeCommandVisitor& commandVisitor) override;
+    void Accept(ISerializeCommandVisitor& commandVisitor) override;
 
 private:
     int m_command;
@@ -62,7 +62,7 @@ public:
     bool IsDecimalPresent() const override;
     const std::wstring& GetToken(wchar_t decimalSymbol) override;
     CalculationManager::CommandType GetCommandType() const override;
-    void Accept(_In_ ISerializeCommandVisitor& commandVisitor) override;
+    void Accept(ISerializeCommandVisitor& commandVisitor) override;
     std::wstring GetString(uint32_t radix, int32_t precision);
 
 private:
@@ -79,8 +79,8 @@ private:
 class ISerializeCommandVisitor
 {
 public:
-    virtual void Visit(_In_ COpndCommand& opndCmd) = 0;
-    virtual void Visit(_In_ CUnaryCommand& unaryCmd) = 0;
-    virtual void Visit(_In_ CBinaryCommand& binaryCmd) = 0;
-    virtual void Visit(_In_ CParentheses& paraCmd) = 0;
+    virtual void Visit(COpndCommand& opndCmd) = 0;
+    virtual void Visit(CUnaryCommand& unaryCmd) = 0;
+    virtual void Visit(CBinaryCommand& binaryCmd) = 0;
+    virtual void Visit(CParentheses& paraCmd) = 0;
 };

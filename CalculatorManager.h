@@ -58,8 +58,8 @@ namespace CalculationManager
         bool m_isExponentialFormat;
         Command m_currentDegreeMode;
 
-        void MemorizedNumberSelect(_In_ unsigned int);
-        void MemorizedNumberChanged(_In_ unsigned int);
+        void MemorizedNumberSelect(unsigned int);
+        void MemorizedNumberChanged(unsigned int);
 
         void LoadPersistedPrimaryValue();
 
@@ -69,33 +69,33 @@ namespace CalculationManager
 
     public:
         // ICalcDisplay
-        void SetPrimaryDisplay(_In_ const std::wstring& displayString, _In_ bool isError) override;
+        void SetPrimaryDisplay(const std::wstring& displayString, bool isError) override;
         void SetIsInError(bool isError) override;
         void SetExpressionDisplay(
-            _Inout_ std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
-            _Inout_ std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands) override;
-        void SetMemorizedNumbers(_In_ const std::vector<std::wstring>& memorizedNumbers) override;
-        void OnHistoryItemAdded(_In_ unsigned int addedItemIndex) override;
-        void SetParenthesisNumber(_In_ unsigned int parenthesisCount) override;
+            std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
+            std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands) override;
+        void SetMemorizedNumbers(const std::vector<std::wstring>& memorizedNumbers) override;
+        void OnHistoryItemAdded(unsigned int addedItemIndex) override;
+        void SetParenthesisNumber(unsigned int parenthesisCount) override;
         void OnNoRightParenAdded() override;
         void DisplayPasteError();
         void MaxDigitsReached() override;
         void BinaryOperatorReceived() override;
         void MemoryItemChanged(unsigned int indexOfMemory) override;
         void InputChanged() override;
-        CalculatorManager(_In_ ICalcDisplay* displayCallback, _In_ IResourceProvider* resourceProvider);
+        CalculatorManager(ICalcDisplay* displayCallback, IResourceProvider* resourceProvider);
 
         void Reset(bool clearMemory = true);
         void SetStandardMode();
         void SetScientificMode();
         void SetProgrammerMode();
-        void SendCommand(_In_ Command command);
+        void SendCommand(Command command);
 
         void MemorizeNumber();
-        void MemorizedNumberLoad(_In_ unsigned int);
-        void MemorizedNumberAdd(_In_ unsigned int);
-        void MemorizedNumberSubtract(_In_ unsigned int);
-        void MemorizedNumberClear(_In_ unsigned int);
+        void MemorizedNumberLoad(unsigned int);
+        void MemorizedNumberAdd(unsigned int);
+        void MemorizedNumberSubtract(unsigned int);
+        void MemorizedNumberClear(unsigned int);
         void MemorizedNumberClearAll();
 
         bool IsEngineRecording();
@@ -108,15 +108,15 @@ namespace CalculationManager
         wchar_t DecimalSeparator();
 
         std::vector<std::shared_ptr<HISTORYITEM>> const& GetHistoryItems();
-        std::vector<std::shared_ptr<HISTORYITEM>> const& GetHistoryItems(_In_ CalculatorMode mode);
-        std::shared_ptr<HISTORYITEM> const& GetHistoryItem(_In_ unsigned int uIdx);
-        bool RemoveHistoryItem(_In_ unsigned int uIdx);
+        std::vector<std::shared_ptr<HISTORYITEM>> const& GetHistoryItems(CalculatorMode mode);
+        std::shared_ptr<HISTORYITEM> const& GetHistoryItem(unsigned int uIdx);
+        bool RemoveHistoryItem(unsigned int uIdx);
         void ClearHistory();
         size_t MaxHistorySize() const
         {
             return m_pHistory->MaxHistorySize();
         }
         CalculationManager::Command GetCurrentDegreeMode();
-        void SetInHistoryItemLoadMode(_In_ bool isHistoryItemLoadMode);
+        void SetInHistoryItemLoadMode(bool isHistoryItemLoadMode);
     };
 }

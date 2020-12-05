@@ -22,7 +22,7 @@ void StandardCalculatorViewModel::SetExpressionDisplay(std::shared_ptr<std::vect
     std::wcout << CalculationExpressionAutomationName << std::endl;
 }
 
-void StandardCalculatorViewModel::SetTokens(_Inout_ std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens)
+void StandardCalculatorViewModel::SetTokens(std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens)
 {
     AreTokensUpdated = false;
 

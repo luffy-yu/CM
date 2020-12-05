@@ -11,7 +11,7 @@ class IHistoryDisplay
 public:
     virtual ~IHistoryDisplay(){};
     virtual unsigned int AddToHistory(
-        _In_ std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
-        _In_ std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands,
-        _In_ std::wstring_view result) = 0;
+        std::shared_ptr<std::vector<std::pair<std::wstring, int>>> const& tokens,
+        std::shared_ptr<std::vector<std::shared_ptr<IExpressionCommand>>> const& commands,
+        std::wstring_view result) = 0;
 };

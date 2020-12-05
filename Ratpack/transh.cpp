@@ -88,7 +88,7 @@ void _sinhrat(PRAT* px, int32_t precision)
     DESTROYTAYLOR();
 }
 
-void sinhrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void sinhrat(PRAT* px, uint32_t radix, int32_t precision)
 
 {
     PRAT tmpx = nullptr;
@@ -169,7 +169,7 @@ void _coshrat(PRAT* px, uint32_t radix, int32_t precision)
     DESTROYTAYLOR();
 }
 
-void coshrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void coshrat(PRAT* px, uint32_t radix, int32_t precision)
 
 {
     PRAT tmpx = nullptr;
@@ -211,7 +211,7 @@ void coshrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
 //
 //-----------------------------------------------------------------------------
 
-void tanhrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void tanhrat(PRAT* px, uint32_t radix, int32_t precision)
 
 {
     PRAT ptmp = nullptr;

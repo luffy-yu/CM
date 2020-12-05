@@ -8,7 +8,7 @@
 #include "winerror_cross_platform.h"
 #include "Ratpack/CalcErr.h"
 #include <stdexcept> // for std::out_of_range
-#include "sal_cross_platform.h"     // for SAL
+//#include "sal_cross_platform.h"     // for SAL
 
 template <typename TType>
 class CalculatorVector
@@ -33,7 +33,7 @@ public:
         return S_OK;
     }
 
-    ResultCode SetAt(_In_ unsigned int index, _In_opt_ TType item)
+    ResultCode SetAt(unsigned int index, _In_opt_ TType item)
     {
         try
         {
@@ -46,7 +46,7 @@ public:
         return S_OK;
     }
 
-    ResultCode RemoveAt(_In_ unsigned int index)
+    ResultCode RemoveAt(unsigned int index)
     {
         if (index < m_vector.size())
         {
@@ -59,7 +59,7 @@ public:
         return S_OK;
     }
 
-    ResultCode InsertAt(_In_ unsigned int index, _In_ TType item)
+    ResultCode InsertAt(unsigned int index, TType item)
     {
         try
         {
@@ -73,7 +73,7 @@ public:
         return S_OK;
     }
 
-    ResultCode Truncate(_In_ unsigned int index)
+    ResultCode Truncate(unsigned int index)
     {
         if (index < m_vector.size())
         {

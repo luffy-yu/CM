@@ -16,7 +16,7 @@
 
 #include "ratpak.h"
 
-void scalerat(_Inout_ PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
+void scalerat(PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
 {
     switch (angletype)
     {
@@ -98,7 +98,7 @@ void sinrat(PRAT* px, uint32_t radix, int32_t precision)
     _sinrat(px, precision);
 }
 
-void sinanglerat(_Inout_ PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
+void sinanglerat(PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
 
 {
     scalerat(pa, angletype, radix, precision);
@@ -187,13 +187,13 @@ void _cosrat(PRAT* px, uint32_t radix, int32_t precision)
     }
 }
 
-void cosrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void cosrat(PRAT* px, uint32_t radix, int32_t precision)
 {
     scale2pi(px, radix, precision);
     _cosrat(px, radix, precision);
 }
 
-void cosanglerat(_Inout_ PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
+void cosanglerat(PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
 
 {
     scalerat(pa, angletype, radix, precision);
@@ -257,13 +257,13 @@ void _tanrat(PRAT* px, uint32_t radix, int32_t precision)
     destroyrat(ptmp);
 }
 
-void tanrat(_Inout_ PRAT* px, uint32_t radix, int32_t precision)
+void tanrat(PRAT* px, uint32_t radix, int32_t precision)
 {
     scale2pi(px, radix, precision);
     _tanrat(px, radix, precision);
 }
 
-void tananglerat(_Inout_ PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
+void tananglerat(PRAT* pa, AngleType angletype, uint32_t radix, int32_t precision)
 
 {
     scalerat(pa, angletype, radix, precision);

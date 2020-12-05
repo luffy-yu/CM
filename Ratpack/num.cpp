@@ -43,7 +43,7 @@ using namespace std;
 
 void _addnum(PNUMBER* pa, PNUMBER b, uint32_t radix);
 
-void addnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix)
+void addnum(PNUMBER* pa, PNUMBER b, uint32_t radix)
 
 {
     if (b->cdigit > 1 || b->mant[0] != 0)
@@ -185,7 +185,7 @@ void _addnum(PNUMBER* pa, PNUMBER b, uint32_t radix)
 
 void _mulnum(PNUMBER* pa, PNUMBER b, uint32_t radix);
 
-void mulnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix)
+void mulnum(PNUMBER* pa, PNUMBER b, uint32_t radix)
 
 {
     if (b->cdigit > 1 || b->mant[0] != 1 || b->exp != 0)
@@ -301,7 +301,7 @@ void _mulnum(PNUMBER* pa, PNUMBER b, uint32_t radix)
 //
 //----------------------------------------------------------------------------
 
-void remnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix)
+void remnum(PNUMBER* pa, PNUMBER b, uint32_t radix)
 
 {
     PNUMBER tmp = nullptr;     // tmp is the working remainder.
@@ -364,7 +364,7 @@ void remnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix)
 
 void _divnum(PNUMBER* pa, PNUMBER b, uint32_t radix, int32_t precision);
 
-void divnum(_Inout_ PNUMBER* pa, _In_ PNUMBER b, uint32_t radix, int32_t precision)
+void divnum(PNUMBER* pa, PNUMBER b, uint32_t radix, int32_t precision)
 
 {
     if (b->cdigit > 1 || b->mant[0] != 1 || b->exp != 0)
@@ -488,7 +488,7 @@ void _divnum(PNUMBER* pa, PNUMBER b, uint32_t radix, int32_t precision)
 //
 //---------------------------------------------------------------------------
 
-bool equnum(_In_ PNUMBER a, _In_ PNUMBER b)
+bool equnum(PNUMBER a, PNUMBER b)
 
 {
     int32_t diff;
@@ -554,7 +554,7 @@ bool equnum(_In_ PNUMBER a, _In_ PNUMBER b)
 //
 //---------------------------------------------------------------------------
 
-bool lessnum(_In_ PNUMBER a, _In_ PNUMBER b)
+bool lessnum(PNUMBER a, PNUMBER b)
 
 {
     int32_t diff = (a->cdigit + a->exp) - (b->cdigit + b->exp);
@@ -599,7 +599,7 @@ bool lessnum(_In_ PNUMBER a, _In_ PNUMBER b)
 //
 //----------------------------------------------------------------------------
 
-bool zernum(_In_ PNUMBER a)
+bool zernum(PNUMBER a)
 
 {
     int32_t length;

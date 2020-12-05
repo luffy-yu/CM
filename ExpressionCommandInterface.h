@@ -13,7 +13,7 @@ class IExpressionCommand
 {
 public:
     virtual CalculationManager::CommandType GetCommandType() const = 0;
-    virtual void Accept(_In_ ISerializeCommandVisitor& commandVisitor) = 0;
+    virtual void Accept(ISerializeCommandVisitor& commandVisitor) = 0;
 };
 
 class IOperatorCommand : public IExpressionCommand
