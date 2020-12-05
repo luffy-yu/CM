@@ -17,8 +17,8 @@
 #include <sstream>
 #include <iomanip>
 #include <iosfwd>
-#include "Header Files/CalcEngine.h"
-#include "Header Files/CalcUtils.h"
+#include "CEngine/CalcEngine.h"
+#include "CEngine/CalcUtils.h"
 #include "NumberFormattingUtils.h"
 
 using namespace std;
