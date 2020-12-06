@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 #include <cassert>
-#include <xstring>
+//#include <xstring>
 #include "CalculatorHistory.h"
 
 using namespace std;

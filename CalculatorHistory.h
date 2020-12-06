@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 #pragma once
+#include <iostream>
 #include "ExpressionCommandInterface.h"
 #include "CEngine/IHistoryDisplay.h"
 
