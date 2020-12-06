@@ -64,7 +64,7 @@ wchar_t g_decimalSeparator = L'.';
 
 namespace
 {
-    int32_t Calc_ULongAdd(uint32_t ulAugend, uint32_t ulAddend, _Out_ uint32_t* pulResult)
+    int32_t Calc_ULongAdd(uint32_t ulAugend, uint32_t ulAddend, uint32_t* pulResult)
     {
         int32_t hr = CALC_INTSAFE_E_ARITHMETIC_OVERFLOW;
         *pulResult = CALC_ULONG_ERROR;
@@ -78,7 +78,7 @@ namespace
         return hr;
     }
 
-    int32_t Calc_ULongLongToULong(uint64_t ullOperand, _Out_ uint32_t* pulResult)
+    int32_t Calc_ULongLongToULong(uint64_t ullOperand, uint32_t* pulResult)
     {
         int32_t hr = CALC_INTSAFE_E_ARITHMETIC_OVERFLOW;
         *pulResult = CALC_ULONG_ERROR;
@@ -92,7 +92,7 @@ namespace
         return hr;
     }
 
-    int32_t Calc_ULongMult(uint32_t ulMultiplicand, uint32_t ulMultiplier, _Out_ uint32_t* pulResult)
+    int32_t Calc_ULongMult(uint32_t ulMultiplicand, uint32_t ulMultiplier, uint32_t* pulResult)
     {
         uint64_t ull64Result = Calc_UInt32x32To64(ulMultiplicand, ulMultiplier);
 

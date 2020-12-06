@@ -14,7 +14,7 @@ template <typename TType>
 class CalculatorVector
 {
 public:
-    ResultCode GetAt(_In_opt_ unsigned int index, _Out_ TType* item)
+    ResultCode GetAt(_In_opt_ unsigned int index, TType* item)
     {
         try
         {
@@ -27,7 +27,7 @@ public:
         return S_OK;
     }
 
-    ResultCode GetSize(_Out_ unsigned int* size)
+    ResultCode GetSize(unsigned int* size)
     {
         *size = static_cast<unsigned>(m_vector.size());
         return S_OK;
@@ -112,7 +112,7 @@ public:
         return S_OK;
     }
 
-    ResultCode GetString(_Out_ std::wstring* expression)
+    ResultCode GetString(std::wstring* expression)
     {
         unsigned int nTokens = 0;
         ResultCode hr = this->GetSize(&nTokens);
@@ -145,7 +145,7 @@ public:
         return hr;
     }
 
-    ResultCode GetExpressionSuffix(_Out_ std::wstring* suffix)
+    ResultCode GetExpressionSuffix(std::wstring* suffix)
     {
         *suffix = L" =";
         return S_OK;
