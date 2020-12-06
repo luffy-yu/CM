@@ -60,7 +60,7 @@ typedef struct _number
                     // radix being used.
     int32_t exp;    // The offset of digits from the radix point
                     // (decimal point in radix 10)
-    MANTTYPE mant[];
+    MANTTYPE mant[10]; //clang not support MANTTYPE mant[]; 
     // This is actually allocated as a continuation of the
     // NUMBER structure.
 } NUMBER, *PNUMBER, **PPNUMBER;
