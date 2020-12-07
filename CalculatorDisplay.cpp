@@ -7,6 +7,7 @@
 #include "CalculatorDisplay.h"
 //#include "StandardCalculatorViewModel.h"
 #include "StringUtils.h"
+//#include "BridgeCalculatorDisplay.h"
 
 using namespace CalculatorApp;
 using namespace CalculationManager;
@@ -17,10 +18,11 @@ CalculatorDisplay::CalculatorDisplay()
 {
 }
 
-//void CalculatorDisplay::SetCallback(Platform::WeakReference callbackReference)
-//{
-//    m_callbackReference = callbackReference;
-//}
+void CalculatorDisplay::SetCallback(CalculatorDisplayCallBack *callback)
+{
+    cout << "SetCallBack" << endl;
+    m_callback = callback;
+}
 
 //void CalculatorDisplay::SetHistoryCallback(Platform::WeakReference callbackReference)
 //{
@@ -40,6 +42,11 @@ void CalculatorDisplay::SetPrimaryDisplay(const wstring& displayStringValue, boo
     std::cout << "SetPrimaryDisplay" << std::endl;
     std::wcout << displayStringValue << std::endl;
     //std::cout << ws2s(displayStringValue) << std::endl;
+    
+    if(m_callback)
+    {
+        m_callback->SetPrimaryDisplay(displayStringValue, isError);
+    }
 }
 
 void CalculatorDisplay::SetParenthesisNumber(unsigned int parenthesisCount)

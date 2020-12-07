@@ -5,6 +5,7 @@
 
 #include "CEngine/ICalcDisplay.h"
 #include "StandardCalculatorViewModel.h"
+#include "CalculatorDisplayCallBack.h"
 
 namespace CalculatorApp
 {
@@ -13,7 +14,7 @@ namespace CalculatorApp
     {
     public:
         CalculatorDisplay();
-        void SetCallback(/*Platform::WeakReference callbackReference*/);
+        void SetCallback(CalculatorDisplayCallBack *callback);
         void SetHistoryCallback(/*Platform::WeakReference callbackReference*/);
 
     private:
@@ -32,6 +33,7 @@ namespace CalculatorApp
         void InputChanged() override;
 
     private:
+        CalculatorDisplayCallBack *m_callback;
         //Platform::WeakReference m_callbackReference;
         //Platform::WeakReference m_historyCallbackReference;
         StandardCalculatorViewModel m_StandardCalculatorViewModel;
