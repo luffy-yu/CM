@@ -1,6 +1,7 @@
 #include "StandardCalculatorViewModel.h"
 #include "StringUtils.h"
 #include "ResourceProvider.h"
+#include "CalculatorDisplayCallBack.h"
 
 using namespace CalculatorApp;
 using namespace CalculationManager;
@@ -17,6 +18,8 @@ void StandardCalculatorViewModel::SetExpressionDisplay(std::shared_ptr<std::vect
     CalculationExpressionAutomationName = GetCalculatorExpressionAutomationName();
 
     AreTokensUpdated = true;
+    
+    CalculatorDisplayCallBack::SetExpressionDisplay(CalculationExpressionAutomationName, 0);
 
     std::cout << "CalculationExpressionAutomationName" << std::endl;
     std::wcout << CalculationExpressionAutomationName << std::endl;

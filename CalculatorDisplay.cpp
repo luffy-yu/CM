@@ -96,7 +96,7 @@ void CalculatorDisplay::SetExpressionDisplay(
     //        calcVM->SetExpressionDisplay(tokens, commands);
     //    }
     //}
-    std::cout << "SetExpressionDisplay" << std::endl;
+//    std::cout << "SetExpressionDisplay" << std::endl;
     m_StandardCalculatorViewModel.SetExpressionDisplay(tokens, commands);
 }
 
